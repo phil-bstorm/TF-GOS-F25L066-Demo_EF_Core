@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public required string Name { get; set; }
 
-        public IEnumerable<Car> Cars = [];
+        public ICollection<Car> Cars = [];
     }
 }
