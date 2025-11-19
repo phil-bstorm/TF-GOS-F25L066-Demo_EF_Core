@@ -4,6 +4,7 @@ using DAL.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(DbContextDemo))]
-    partial class DbContextDemoModelSnapshot : ModelSnapshot
+    [Migration("20251119101222_add_client")]
+    partial class add_client
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,42 +230,6 @@ namespace DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Models.Rent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id")
-                        .HasName("PK_Rent");
-
-                    b.HasIndex("CarId");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Rent", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CarId = 2,
-                            ClientId = 2,
-                            CreatedAt = new DateTime(2025, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
-                });
-
             modelBuilder.Entity("Car_CarOption", b =>
                 {
                     b.HasOne("Domain.Models.Car", null)
@@ -289,38 +256,9 @@ namespace DAL.Migrations
                     b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("Domain.Models.Rent", b =>
-                {
-                    b.HasOne("Domain.Models.Car", "Car")
-                        .WithMany("Rents")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Models.Client", "Client")
-                        .WithMany("Rents")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Car");
-
-                    b.Navigation("Client");
-                });
-
             modelBuilder.Entity("Domain.Models.Brand", b =>
                 {
                     b.Navigation("Cars");
-                });
-
-            modelBuilder.Entity("Domain.Models.Car", b =>
-                {
-                    b.Navigation("Rents");
-                });
-
-            modelBuilder.Entity("Domain.Models.Client", b =>
-                {
-                    b.Navigation("Rents");
                 });
 #pragma warning restore 612, 618
         }
