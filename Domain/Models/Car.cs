@@ -11,5 +11,6 @@ namespace Domain.Models
         public CarStateEnum State { get; set; }
 
         public Brand Brand { get; set; } = null!;
+        public ICollection<CarOption> Options = [];
     }
 }

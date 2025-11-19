@@ -40,10 +40,21 @@ namespace DAL.Database.Configurations
             );
 
             // Relations
+            // Relation vers la marque
             builder.HasOne(c => c.Brand)
                 .WithMany(b => b.Cars)
                 .HasForeignKey("BrandId")
                 .IsRequired();
+
+            // Relation vers les options
+            builder.HasMany(c => c.Options)
+                .WithMany(co => co.Cars)
+                .UsingEntity(
+                    "Car_CarOption",
+                    left => left.HasOne(typeof(CarOption)).WithMany().HasForeignKey("OptionId").HasPrincipalKey(nameof(CarOption.Id)),
+                    right => right.HasOne(typeof(Car)).WithMany().HasForeignKey("CarId").HasPrincipalKey(nameof(Car.Id)),
+                    join => join.HasKey("CarId", "OptionId")
+                );
         }
     }
 }

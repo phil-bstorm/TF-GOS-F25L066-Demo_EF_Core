@@ -8,7 +8,7 @@ Console.WriteLine("Hello, World!");
 
 using (DbContextDemo db = new DbContextDemo()) {
     Console.WriteLine("Je suis connecté!");
-
+    /*
     Brand b1 = new Brand() { Name="BMW" };
     
     Car c1 = new Car() { 
@@ -21,6 +21,7 @@ using (DbContextDemo db = new DbContextDemo()) {
 
     db.Cars.Add(c1);
     db.SaveChanges();
+    */
     
 
     // Récupération d'une liste de voiture

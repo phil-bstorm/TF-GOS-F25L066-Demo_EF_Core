@@ -31,6 +31,29 @@ namespace DAL.Database
             modelBuilder.ApplyConfiguration(new BrandSeed());
             modelBuilder.ApplyConfiguration(new CarSeed());
             modelBuilder.ApplyConfiguration(new CarOptionSeed());
+
+            modelBuilder.Entity("Car_CarOption")
+                .HasData(
+                    new {
+                        CarId= 1,
+                        OptionId = 1
+                    },
+                    new
+                    {
+                        CarId = 1,
+                        OptionId = 2
+                    },
+                    new
+                    {
+                        CarId = 1,
+                        OptionId = 3
+                    },
+                    new
+                    {
+                        CarId = 2,
+                        OptionId = 1
+                    }
+                );
         }
     }
 }
