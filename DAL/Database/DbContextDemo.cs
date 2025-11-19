@@ -10,6 +10,7 @@ namespace DAL.Database
         #region Entités de la DB
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<CarOption> CarOptions { get; set; }
         #endregion
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -25,9 +26,11 @@ namespace DAL.Database
         {
             modelBuilder.ApplyConfiguration(new BrandConfig());
             modelBuilder.ApplyConfiguration(new CarConfig());
+            modelBuilder.ApplyConfiguration(new CarOptionConfig());
 
             modelBuilder.ApplyConfiguration(new BrandSeed());
             modelBuilder.ApplyConfiguration(new CarSeed());
+            modelBuilder.ApplyConfiguration(new CarOptionSeed());
         }
     }
 }

@@ -9,20 +9,26 @@ Console.WriteLine("Hello, World!");
 using (DbContextDemo db = new DbContextDemo()) {
     Console.WriteLine("Je suis connecté!");
 
-    /*
+    Brand b1 = new Brand() { Name="BMW" };
+    
     Car c1 = new Car() { 
-        Model = "Polo",
-        Price = 100,
+        Model = "Q8",
+        Price = 22000,
         RegistrationDate = DateTime.Now,
-        State = CarStateEnum.FOR_PARTS
+        State = CarStateEnum.FOR_PARTS,
+        Brand = b1,
     };
 
     db.Cars.Add(c1);
     db.SaveChanges();
-    */
+    
 
     // Récupération d'une liste de voiture
     var voitures = db.Cars.Include(c => c.Brand);
+    
+    var voituresPriceLt100 = db.Cars
+                .Where(c => c.Price < 100)
+                .Include(c => c.Brand);
 
     foreach (var v in voitures) {
         Console.WriteLine($"{v.Id} - {v.Model} - {v.Brand.Name}");
@@ -34,7 +40,13 @@ using (DbContextDemo db = new DbContextDemo()) {
     {
         // Update
         mx.State = CarStateEnum.FOR_PARTS;
-        db.SaveChanges();
+        try
+        {
+            db.SaveChanges();
+        }catch( Exception ex)
+        {
+            Console.WriteLine("La mise à jour a échouée");
+        }
     }
 
     var poloId3 = db.Cars.FirstOrDefault(c => c.Id == 3);
