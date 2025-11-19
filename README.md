@@ -33,7 +33,7 @@
 1.  Dans le projet `Domain`:
     1. Dans le dossier `Models` création des class (Ex: `Car.cs`, `Brand.cs`...)
 2.  Dans le projet `DAL`:
-    1. Dans le dossier `Database/Configurations` création des class de configurations (Ex: `CarConfiguration.cs`, `BrandConfiguration.cs`...)
+    1. Dans le dossier `Database/Configurations` création des class de configurations (Ex: `CarConfig.cs`, `BrandConfig.cs`...)
     2. Dans le dossier `Database/Seeds` création des class de seeds (Ex: `CarSeed.cs`, `BrandSeed.cs`...)
     3. Création du contexte de la DB (Ex: `AppDbContext.cs`)
     4. Ajout des configurations et seeds dans le contexte de la DB et le `DbSet` pour chaque table
